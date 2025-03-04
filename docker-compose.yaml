@@ -1,0 +1,67 @@
+version: '3.8'
+
+services:
+  traefik:
+    image: traefik:v2.10
+    container_name: traefik_proxy
+    restart: always
+    ports:
+      - "80:80"  # Traefik listens on port 80
+    command:
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--entrypoints.web.address=:80"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+
+  db:
+    image: mysql:8.0
+    container_name: mysql_db
+    restart: always
+    environment:
+      MYSQL_DATABASE: ${DATABASE_NAME}
+      MYSQL_USER: ${DATABASE_USER}
+      MYSQL_PASSWORD: ${DATABASE_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${DATABASE_PASSWORD}
+    ports:
+      - "3306:3306"  # Only needed if you want to access MySQL from outside Docker
+    volumes:
+      - 7cabac56fc8d6697b62e1afd31cfd1a80e4e270f41fd8ae2566afffa2204c7bc:/var/lib/mysql
+    env_file:
+      - .env
+
+  redis:
+    image: redis:latest
+    container_name: redis_cache
+    restart: always
+
+  web:
+    build: .
+    image: django-app:latest
+    container_name: django_app
+    restart: always
+    depends_on:
+      - db
+      - redis
+    env_file:
+      - .env
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.django.rule=Host(`localhost`)"
+      - "traefik.http.services.django.loadbalancer.server.port=8000"
+
+  celery_worker:
+    build: .
+    image: django-app:latest
+    container_name: celery_worker
+    restart: always
+    depends_on:
+      - web
+      - redis
+    env_file:
+      - .env
+    command: celery -A ticketing_project worker --loglevel=info
+
+volumes:
+  7cabac56fc8d6697b62e1afd31cfd1a80e4e270f41fd8ae2566afffa2204c7bc:
+    external: true
