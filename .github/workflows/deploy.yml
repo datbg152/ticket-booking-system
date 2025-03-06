@@ -23,6 +23,9 @@ jobs:
             fi
             cd ~/ticketing_project
             git pull origin main
+            echo "${{ secrets.ENV_FILE }}" > .env
+            chmod 600 .env  # Secure the .env file
+            
             docker-compose down
             docker-compose up -d --build
           EOF
