@@ -21,9 +21,11 @@ services:
     restart: always
     env_file:
       - .env
+    ports:
+      - "8000:8000"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.django.rule=Host(`13.125.246.239`)"  
+      - "traefik.http.routers.django.rule=Host(`3.36.64.18`)"
       - "traefik.http.services.django.loadbalancer.server.port=8000"
 
   celery_worker:
