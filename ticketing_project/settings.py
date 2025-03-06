@@ -53,10 +53,15 @@ INSTALLED_APPS = [
 ]
 
 # Celery Configuration
+#local
 # CELERY_BROKER_URL = 'redis://localhost:6379/0'
 # CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
-CELERY_BROKER_URL = os.getenv('CELERY_BROKER_URL', 'redis://localhost:6379/0')
-CELERY_RESULT_BACKEND = os.getenv('CELERY_RESULT_BACKEND', 'redis://localhost:6379/0')
+#image
+# CELERY_BROKER_URL = os.getenv('CELERY_BROKER_URL', 'redis://localhost:6379/0')
+# CELERY_RESULT_BACKEND = os.getenv('CELERY_RESULT_BACKEND', 'redis://localhost:6379/0')
+#aws
+CELERY_BROKER_URL = 'redis://clustercfg.myproject-cache.sv0qeo.apn2.cache.amazonaws.com:6379/0'
+CELERY_RESULT_BACKEND = 'redis://clustercfg.myproject-cache.sv0qeo.apn2.cache.amazonaws.com:6379/0'
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
@@ -146,11 +151,11 @@ CACHES = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.getenv('DATABASE_NAME', 'mydb'),
-        'USER': os.getenv('DATABASE_USER', 'root'),
-        'PASSWORD': os.getenv('DATABASE_PASSWORD', 'mypassword'),
-        'HOST': os.getenv("DATABASE_HOST", "localhost"),
-        'PORT': os.getenv('DATABASE_PORT', '3306'),
+        'NAME': 'mydb',
+        'USER': 'mydbadmin',
+        'PASSWORD': 'ducbg152',
+        'HOST': 'myproject-db.cju6mk4sym85.ap-northeast-2.rds.amazonaws.com',
+        'PORT': '3306',
     }
 }
 # Password validation
