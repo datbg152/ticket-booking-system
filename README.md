@@ -1,85 +1,82 @@
 Ticket Booking System
 
-📌 Project Overview
+Project Overview
 
-This is a ticket booking system. The primary goal of this project is to learn how to structure a backend system using modern frameworks and deployment tools. Throughout the development process, I focused on:
+Description: This is a ticket booking system designed to understand backend system structuring using modern frameworks and deployment tools.
 
-🏗 Utilizing Django as a web framework.
+Key Learnings:
 
-🔗 Designing relational database models in MySQL.
+Framework: Utilizing Django as a web framework.
 
-🔑 Implementing JWT authentication for user verification.
+Database: Designing relational database models in MySQL.
 
-🔒 Managing authorization & permissions via Django Admin.
+Authentication: Implementing JWT authentication for user verification.
 
-⚡ Using Redis & Celery for asynchronous task execution.
+Authorization: Managing user permissions via Django Admin.
 
-🛠 Testing APIs using Postman.
+Asynchronous Tasks: Using Redis & Celery for background processing.
 
-📦 Containerizing the application with Docker.
+API Testing: Using Postman to test and monitor API requests.
 
-🚀 Deploying to AWS EC2 via Docker & GitHub Actions.
+Containerization: Deploying the system using Docker.
 
-🛠 Tech Stack
+Deployment: Automating deployment with GitHub Actions & AWS EC2.
 
-This project uses the following technologies:
+Tech Stack
 
 Backend: Django, Django REST Framework
 
 Database: MySQL
 
-Asynchronous Processing: Celery, Redis
+Task Queue: Celery, Redis
 
 Containerization: Docker, Docker Compose
 
-Networking & Proxy: Traefik
+Networking: Traefik
 
 CI/CD: GitHub Actions
 
-Cloud Deployment: AWS EC2
+Cloud Hosting: AWS EC2
 
-🚀 Setup & Deployment
+Setup & Deployment
 
-🔹 Running Locally:
+Local Deployment:
 
-To run the project locally using Docker Compose:
+Command:
 
-# Start the server
 docker-compose up --build
 
-🔹 Deployment to AWS:
+Production Deployment:
 
-Uses GitHub Actions, Docker Compose, and AWS for automated deployment.
+Tools Used: GitHub Actions, Docker Compose, AWS EC2.
+Process:
 
-The CI/CD pipeline automates testing, error detection, and deployment.
+Automates testing and error detection.
 
-The application is deployed on an AWS EC2 instance.
+Deploys the application to AWS EC2.
 
-📦 Docker & AWS Integration
+Docker & AWS Usage
 
-The application is containerized using Docker.
+Docker: Containerizes the application.
 
-Docker images are built locally and pushed to AWS.
+AWS: Hosts the application on EC2.
 
-EC2 hosts the deployed application.
+Traefik: Manages reverse proxy and load balancing.
 
-Traefik handles reverse proxy and load balancing.
+GitHub Actions
 
-🔄 GitHub Actions (CI/CD Pipeline)
+CI/CD Workflow Includes:
 
-The CI/CD pipeline includes:
+Build: Generates Docker image.
 
-✅ Building & testing the Docker image
+Test: Runs automated tests.
 
-✅ Running automated tests
+Deploy: Pushes the application to AWS.
 
-✅ Deploying the application to AWS
+Environment Variables
 
-🔑 Environment Variables
+Configuration File: .env
 
-The project requires a .env file with essential configurations:
-
-# Example environment variables
 SECRET_KEY=your_secret_key
 DB_HOST=your_mysql_host
 DB_NAME=your_database_name
@@ -88,20 +85,23 @@ DB_PASSWORD=your_password
 REDIS_URL=redis://redis:6379/0
 CELERY_BROKER_URL=redis://redis:6379/0
 
-📌 Note: Do not expose sensitive data in public repositories!
+Note: Do not expose sensitive data in public repositories.
 
-💻 Usage
+Usage
 
-A domain name is recommended for public access.
+Domain Requirement: Recommended for public access.
 
-Since this is a personal learning project, the server is currently accessed via the EC2 instance’s public IP.
+Access Method: Uses EC2 instance’s public IP for connectivity.
 
-⚠️ Troubleshooting
+Troubleshooting
 
 Common Issues & Fixes:
 
-❌ Configuration mismatches → Ensure .env variables are set correctly.
-❌ Networking issues → Check Docker network settings & AWS security groups.
-❌ Database connection errors → Ensure MySQL is running and accessible.
-❌ Understanding virtual machines → Learn about Docker containers vs. AWS EC2 instances.
+Configuration Mismatch: Ensure .env variables are correctly set.
+
+Networking Issues: Check Docker network settings & AWS security groups.
+
+Database Connection Errors: Verify MySQL is running and accessible.
+
+VM vs. Containers: Understand the difference between AWS EC2 and Docker containers.
 
